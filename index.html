@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br" x-data="{ open: false }">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arch Engenharia - Projetos Civis e Plantas Baixas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body class="font-sans bg-gray-100 text-gray-800">
+
+  <!-- Header com Menu -->
+  <header class="fixed w-full z-50 bg-white shadow">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <a href="#home" class="flex items-center space-x-2">
+        <img src="img/logo.png" alt="Logo Arch Engenharia" class="h-10">
+        <span class="font-bold text-xl text-gray-800">Arch Engenharia</span>
+      </a>
+
+      <!-- Botão Hamburguer -->
+      <button @click="open = !open" class="md:hidden text-gray-700 focus:outline-none">
+        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 transition-transform transform hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
+        </svg>
+        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 transition-transform transform hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Menu Desktop -->
+      <nav class="hidden md:flex space-x-6 text-gray-700">
+        <a href="#home" class="hover:text-blue-600 transition">Início</a>
+        <a href="#sobre" class="hover:text-blue-600 transition">Sobre Nós</a>
+        <a href="#orcamentos" class="hover:text-blue-600 transition">Orçamentos</a>
+        <a href="#contato" class="hover:text-blue-600 transition">Contato</a>
+      </nav>
+    </div>
+
+    <!-- Overlay -->
+    <div x-show="open" @click="open = false" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40 transition-opacity"></div>
+
+    <!-- Menu Mobile Off-canvas -->
+    <nav x-show="open" class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out"
+      :class="open ? 'translate-x-0' : '-translate-x-full'">
+      <div class="p-6 space-y-6">
+        <a href="#home" @click="open = false" class="block text-lg text-gray-700 hover:text-blue-600">Início</a>
+        <a href="#sobre" @click="open = false" class="block text-lg text-gray-700 hover:text-blue-600">Sobre Nós</a>
+        <a href="#orcamentos" @click="open = false" class="block text-lg text-gray-700 hover:text-blue-600">Orçamentos</a>
+        <a href="#contato" @click="open = false" class="block text-lg text-gray-700 hover:text-blue-600">Contato</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="pt-20 space-y-20">
+
+    <!-- Hero -->
+    <section id="home" class="text-center bg-cover bg-center py-20" style="background-image: url('img/imagem-de-fundo.png');">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">Projetos Inovadores em Engenharia Civil</h1>
+      <p class="text-lg mb-6">Transformando ideias em realidade com precisão e criatividade.</p>
+      <a href="#sobre" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">Saiba Mais Sobre Nós</a>
+    </section>
+
+    <!-- Sobre -->
+     <section id="sobre" class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-6">Sobre a Arch Engenharia</h2>
+      <p class="mb-4 text-justify">
+        A Arch Engenharia é especializada em transformar ideias em realidade, oferecendo soluções completas para projetos civis — da concepção inicial à elaboração de plantas baixas detalhadas, passando pelo acompanhamento técnico e execução de obras. Atuamos em <strong>projetos e obras comerciais e residenciais</strong>, sempre com foco em qualidade, eficiência e inovação.
+      </p>
+      <p class="mb-4 text-justify">
+        Contamos com uma equipe altamente qualificada e utilizamos as mais modernas tecnologias para garantir precisão, agilidade e total conformidade com as normas técnicas.
+      </p>
+      <p class="text-justify">
+        Na Arch Engenharia, <strong>transparência, ética e foco no cliente</strong> são nossos pilares. Entregamos soluções personalizadas, que valorizam cada detalhe do seu projeto e superam as expectativas.
+      </p>
+    </section>
+
+    <!-- Orçamentos -->
+    <section id="orcamentos" class="max-w-3xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-6">Solicite um Orçamento</h2>
+      <form id="formOrcamento" class="bg-white p-6 rounded shadow space-y-4">
+        <input type="text" name="nome" placeholder="Nome Completo" required class="w-full p-3 border rounded">
+        <input type="email" name="email" placeholder="E-mail" required class="w-full p-3 border rounded">
+        <input type="text" name="telefone" placeholder="Telefone (Opcional)" class="w-full p-3 border rounded">
+        <input type="text" name="tipo" placeholder="Tipo de Projeto" class="w-full p-3 border rounded">
+        <textarea name="descricao" placeholder="Breve Descrição do Projeto" required class="w-full p-3 border rounded h-32"></textarea>
+        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700">Enviar</button>
+      </form>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6">Entre em Contato</h2>
+      <p>Rua dos Carijos, 121 - Centro, BH - MG</p>
+      <p>Telefone: (31) 99666-5955</p>
+      <p>E-mail: <a href="mailto:achengenhariaofc@gmail.com" class="text-blue-600">achengenhariaofc@gmail.com</a></p>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="bg-white py-6 mt-10 text-center text-gray-500">
+    <p>&copy; <span id="currentYear"></span> Arch Engenharia. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Script Ano e Formulário -->
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    document.getElementById('formOrcamento').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const nome = form.nome.value.trim();
+      const email = form.email.value.trim();
+      const telefone = form.telefone.value.trim();
+      const tipo = form.tipo.value.trim();
+      const descricao = form.descricao.value.trim();
+
+      if (!nome || !email || !descricao) {
+        alert('Por favor, preencha os campos obrigatórios.');
+        return;
+      }
+
+      const msg = `Olá, Arch Engenharia! Gostaria de solicitar um orçamento:\n\n` +
+                  `*Nome:* ${nome}\n*E-mail:* ${email}\n` +
+                  (telefone ? `*Telefone:* ${telefone}\n` : '') +
+                  (tipo ? `*Tipo:* ${tipo}\n` : '') +
+                  `*Descrição:* ${descricao}`;
+
+      const url = `https://wa.me/5531996665955?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    });
+  </script>
+
+</body>
+</html>
